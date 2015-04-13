@@ -1,0 +1,31 @@
+{
+  "name": "librarian-s3-storage",
+  "version": "1.0.0",
+  "description": "An amazon s3 storage engine for librarian",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/librarianjs/librarian-s3-storage.git"
+  },
+  "keywords": [
+    "librarian",
+    "storage",
+    "s3",
+    "aws"
+  ],
+  "author": "Josh Vanderwillik <joshwillik@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/librarianjs/librarian-s3-storage/issues"
+  },
+  "homepage": "https://github.com/librarianjs/librarian-s3-storage",
+  "dependencies": {
+    "aws-sdk": "^2.1.23"
+  }
+}
