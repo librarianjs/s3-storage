@@ -10,11 +10,14 @@ if( !id || !secret ){
   process.exit()
 }
 
+var MAX_TIMEOUT = process.env.MAX_TIMEOUT || 5000
+
 describe( 's3-storage', function(){
   var testFileKey = 'test-file'
   var storage
 
   it( 'should be creatable', function(){
+    this.timeout( MAX_TIMEOUT )
     storage = new CloudStorage({
       bucketName: 'joshwillik-test',
       uploadDirectory: 'test-uploads',
@@ -24,11 +27,12 @@ describe( 's3-storage', function(){
   })
 
   it( 'should init', function(){
+    this.timeout( MAX_TIMEOUT )
     return storage.init()
   })
 
   it( 'should allow uploading a file by read stream', function( done ){
-    this.timeout( 5000 )
+    this.timeout( MAX_TIMEOUT )
     return storage.put(
       testFileKey,
       fs.createReadStream( __dirname + '/test_upload_image.jpg' ),
@@ -39,11 +43,24 @@ describe( 's3-storage', function(){
   })
 
   it( 'should allow downloading a file', function( done ){
+    this.timeout( MAX_TIMEOUT )
     storage.get( testFileKey, function( err, file ){
       assert( !!file, 'Returned stream is undefined' )
       assert( !err, 'Downloading failed: ' + err )
       assert( file instanceof stream.Readable, 'Returned stream is not a readable stream' )
       done()
     } )
+  })
+
+  it( 'should resolve with an error when a bad key is given', function( done ){
+    this.timeout( MAX_TIMEOUT )
+    storage.get( 'a-random-key', function( err, file ){
+      assert.equal( undefined, file )
+      if( file ) {
+        console.log( file )
+      }
+      assert( err, 'Error is not thrown' )
+      done()
+    })
   })
 })
