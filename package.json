@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/librarianjs/librarian-s3-storage",
   "dependencies": {
-    "aws-sdk": "^2.1.23"
+    "aws-sdk": "^2.1.23",
+    "bluebird": "^2.9.24"
   }
 }
