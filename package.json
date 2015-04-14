@@ -1,6 +1,6 @@
 {
   "name": "librarian-s3-storage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An amazon s3 storage engine for librarian",
   "main": "lib/index.js",
   "directories": {
