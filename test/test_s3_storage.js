@@ -47,7 +47,7 @@ describe( 's3-storage', function(){
     storage.get( testFileKey, function( err, file ){
       assert( !!file, 'Returned stream is undefined' )
       assert( !err, 'Downloading failed: ' + err )
-      assert( file instanceof stream.Readable, 'Returned stream is not a readable stream' )
+      assert( Buffer.isBuffer( file ), 'Returned file is not a buffer' )
       done()
     } )
   })
