@@ -17,6 +17,33 @@ const TEST_DATA = fs.readFileSync(__dirname + '/test_upload_image.jpg')
 const TEST_TIMEOUT = 10000
 
 describe('S3Storage', () => {
+  describe('bad configuration', () => {
+    it('should throw without a bucket name', () => {
+      assert.throws(() => {
+        new S3Storage({
+          accessKeyId: id,
+          secretAccessKey: secret
+        })
+      })
+    })
+    it('should throw without an accessKeyId', () => {
+      assert.throws(() => {
+        new S3Storage({
+          secretAccessKey: secret,
+          bucket: 'testing'
+        })
+      })
+    })
+    it('should throw without a secretAccessKey', () => {
+      assert.throws(() => {
+        new S3Storage({
+          accessKeyId: id,
+          bucket: 'testing'
+        })
+      })
+    })
+  })
+
   describe('default configuration', () => {
     let plugin = new S3Storage({
       accessKeyId: id,
