@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "source ./secret.conf && mocha"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,6 @@
   "homepage": "https://github.com/librarianjs/librarian-s3-storage",
   "dependencies": {
     "aws-sdk": "^2.1.23",
-    "bluebird": "^2.9.24"
+    "lodash.merge": "^4.0.3"
   }
 }
