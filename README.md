@@ -47,3 +47,7 @@ This is the bucket name that your files will be uploaded to.
 ### prefix (optional)
 
 If you want to store file uploads in a bucket along side other files, adding a prefix will allow you to put all your uploads in a "folder". For example, a prefix of `uploads` will allow you to also use the prefix `assets`, `backups`, and `transfers` for other things in the same project.
+
+### createBucket (optional)
+
+If `true`, this option will create the bucket if it does not already exist. Defaults to `false`.

@@ -42,13 +42,27 @@ describe('S3Storage', () => {
         })
       })
     })
+    it('should fail to init() if a bad bucket name is given', function () {
+      let plugin = new S3Storage({
+        accessKeyId: id,
+        secretAccessKey: secret,
+        bucket: 'random-bucket-name'
+      })
+
+      return plugin.init().then(() => {
+        throw new Error('plugin.init() did not fail')
+      }, () => {
+        // Everything is good if the error handler triggered
+      })
+    })
   })
 
-  describe('default configuration', () => {
+  describe('good configuration', () => {
     let plugin = new S3Storage({
       accessKeyId: id,
       secretAccessKey: secret,
-      bucket: 'librarian-test-' + Date.now()
+      bucket: 'librarian-test-' + Date.now(),
+      createBucket: true
     })
 
     after( function () {
@@ -91,7 +105,8 @@ describe('S3Storage', () => {
       accessKeyId: id,
       secretAccessKey: secret,
       bucket: 'librarian-prefix-test-' + Date.now(),
-      prefix: 'uploads'
+      prefix: 'uploads',
+      createBucket: true
     })
 
     after( function () {
